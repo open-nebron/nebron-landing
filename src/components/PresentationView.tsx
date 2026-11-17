@@ -334,31 +334,55 @@ export default function PresentationView() {
       >
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl drop-shadow-2xl">
-            <span className="block text-white">Next-Gen Real-Time</span>
+            <span className="block text-white">One Social Media Platform,</span>
             <span className="mt-2 block bg-gradient-to-r from-cyan-400 via-indigo-400 to-fuchsia-400 bg-clip-text text-transparent">
-              Voice, Chat & Identity.
+              All You Need to Get Started.
             </span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-slate-200 leading-relaxed drop-shadow-md">
-            An open polyrepo ecosystem engineered for sub-15ms spatial audio,
-            high-throughput websocket chat, zero-trust cryptographic identity,
-            and high-res media storage.
+            An all-in-one open ecosystem uniting crystal-clear spatial voice, instant encrypted
+            messaging, social feeds, and zero-trust cryptographic identity — engineered for seamless
+            real-time connection.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            {/* Primary Action: Download Button */}
             <a
-              href="https://github.com/open-nebron"
+              href="https://github.com/open-nebron/desktop-app/releases"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-fuchsia-600 px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-cyan-500/20 transition-all hover:shadow-cyan-500/35 hover:scale-[1.02] active:scale-[0.98]"
+              className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-fuchsia-600 px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-cyan-500/20 transition-all hover:shadow-cyan-500/35 hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <svg
+                className="h-4 w-4 transition-transform group-hover:translate-y-0.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2.2"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                />
+              </svg>
+              <span>Download App</span>
+            </a>
+
+            {/* Secondary Action: Launch Web Client */}
+            <a
+              href="https://github.com/open-nebron/web-frontend"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/15 hover:border-white/30 active:scale-[0.98]"
             >
               <span>Launch Web Client</span>
               <svg
                 className="h-4 w-4 transition-transform group-hover:translate-x-1"
                 fill="none"
                 viewBox="0 0 24 24"
-                strokeWidth="2.5"
+                strokeWidth="2.2"
                 stroke="currentColor"
               >
                 <path
@@ -368,13 +392,6 @@ export default function PresentationView() {
                 />
               </svg>
             </a>
-
-            <button
-              onClick={() => goToSlide(2)}
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-white/20 bg-black/40 backdrop-blur-md px-7 py-3.5 text-sm font-medium text-slate-200 transition-all hover:bg-white/10 hover:border-white/30 active:scale-[0.98]"
-            >
-              <span>Architecture Specs</span>
-            </button>
           </div>
         </div>
 
