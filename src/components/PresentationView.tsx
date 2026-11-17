@@ -369,22 +369,6 @@ export default function PresentationView() {
             .
           </p>
 
-          {/* Clean bullet accents without bulky box containers */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-5 sm:gap-10 text-sm sm:text-base text-slate-300">
-            <div className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400" />
-              <span>Zero ads &amp; zero tracking</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-sm shadow-cyan-400" />
-              <span>Client-side key ownership</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 shadow-sm shadow-indigo-400" />
-              <span>Auditable open cryptography</span>
-            </div>
-          </div>
-
           {/* The Proof Link CTA */}
           <div className="mt-10 flex items-center justify-center">
             <a
