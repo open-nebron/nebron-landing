@@ -494,7 +494,7 @@ export default function PresentationView() {
             : "opacity-0 scale-[0.98] pointer-events-none"
         }`}
       >
-        <GlassworksSection isActive={currentSlide === 4} onGoToSlide={goToSlide} />
+        <GlassworksSection isActive={currentSlide === 4} />
       </div>
 
       {/* ============================================================== */}

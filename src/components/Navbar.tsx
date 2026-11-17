@@ -83,7 +83,7 @@ export default function Navbar({ activeSlide = 0, onSelectSlide }: NavbarProps) 
                 : "text-slate-300 hover:text-white hover:bg-white/5"
             }`}
           >
-            Glassworks
+            Protocol
           </button>
           <a
             href="https://github.com/open-nebron"
@@ -191,7 +191,7 @@ export default function Navbar({ activeSlide = 0, onSelectSlide }: NavbarProps) 
               activeSlide === 4 ? "text-cyan-400 bg-white/10" : "text-slate-300 hover:bg-white/5 hover:text-white"
             }`}
           >
-            Glassworks
+            Protocol
           </button>
           <a
             href="https://github.com/open-nebron"
