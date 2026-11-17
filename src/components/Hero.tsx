@@ -96,9 +96,9 @@ export default function Hero() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
           {/* Hero Title & Subtitle */}
           <div className="mx-auto max-w-3xl">
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl drop-shadow-2xl">
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl drop-shadow-2xl text-white">
               <span className="block text-white">One Social Media Platform,</span>
-              <span className="mt-2 block bg-gradient-to-r from-cyan-400 via-indigo-400 to-fuchsia-400 bg-clip-text text-transparent">
+              <span className="mt-2 block text-white/90">
                 All You Need to Get Started.
               </span>
             </h1>
@@ -115,10 +115,10 @@ export default function Hero() {
                 href="https://github.com/open-nebron/desktop-app/releases"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-fuchsia-600 px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-cyan-500/20 transition-all hover:shadow-cyan-500/35 hover:scale-[1.02] active:scale-[0.98]"
+                className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl bg-white px-7 py-3.5 text-sm font-semibold text-slate-950 shadow-xl transition-all hover:bg-slate-200 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <svg
-                  className="h-4 w-4 transition-transform group-hover:translate-y-0.5"
+                  className="h-4 w-4 transition-transform group-hover:translate-y-0.5 text-slate-950"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth="2.2"

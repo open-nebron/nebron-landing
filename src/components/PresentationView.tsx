@@ -333,9 +333,9 @@ export default function PresentationView() {
         }`}
       >
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl drop-shadow-2xl">
+          <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl drop-shadow-2xl text-white">
             <span className="block text-white">One Social Media Platform,</span>
-            <span className="mt-2 block bg-gradient-to-r from-cyan-400 via-indigo-400 to-fuchsia-400 bg-clip-text text-transparent">
+            <span className="mt-2 block text-white/90">
               All You Need to Get Started.
             </span>
           </h1>
@@ -352,10 +352,10 @@ export default function PresentationView() {
               href="https://github.com/open-nebron/desktop-app/releases"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-fuchsia-600 px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-cyan-500/20 transition-all hover:shadow-cyan-500/35 hover:scale-[1.02] active:scale-[0.98]"
+              className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl bg-white px-7 py-3.5 text-sm font-semibold text-slate-950 shadow-xl transition-all hover:bg-slate-200 hover:scale-[1.02] active:scale-[0.98]"
             >
               <svg
-                className="h-4 w-4 transition-transform group-hover:translate-y-0.5"
+                className="h-4 w-4 transition-transform group-hover:translate-y-0.5 text-slate-950"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="2.2"
@@ -547,7 +547,7 @@ export default function PresentationView() {
             <div
               className={`h-2.5 rounded-full transition-all duration-300 ${
                 currentSlide === idx
-                  ? "w-7 bg-gradient-to-r from-cyan-400 to-indigo-500 shadow-md shadow-cyan-500/50"
+                  ? "w-7 bg-white shadow-md shadow-white/20"
                   : "w-2.5 bg-white/20 group-hover:bg-white/40"
               }`}
             />
@@ -569,7 +569,7 @@ export default function PresentationView() {
           </span>
           <div className="w-14 h-1.5 bg-white/10 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-cyan-400 via-indigo-400 to-fuchsia-500 transition-all duration-75 rounded-full"
+              className="h-full bg-cyan-400 transition-all duration-75 rounded-full"
               style={{ width: `${Math.round(scrollProgress * 100)}%` }}
             />
           </div>
