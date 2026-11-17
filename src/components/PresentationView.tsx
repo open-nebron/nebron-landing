@@ -482,7 +482,7 @@ export default function PresentationView() {
             : "opacity-0 scale-[0.98] pointer-events-none"
         }`}
       >
-        <TransparencySection isActive={currentSlide === 3} onGoToSlide={goToSlide} />
+        <TransparencySection isActive={currentSlide === 3} />
       </div>
 
       {/* ============================================================== */}
