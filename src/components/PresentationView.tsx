@@ -235,7 +235,7 @@ export default function PresentationView() {
       >
         <Image
           src="/cta-bg-4k.webp"
-          alt="Nebron Horizon"
+          alt="Nebron Audio Silhouette"
           fill
           priority
           unoptimized
@@ -243,7 +243,7 @@ export default function PresentationView() {
           className="object-cover object-center hero-image-render"
         />
         <div className="absolute inset-0 hero-dither pointer-events-none" />
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-black/25 backdrop-blur-[0.5px]" />
       </div>
 
       {/* ============================================================== */}
