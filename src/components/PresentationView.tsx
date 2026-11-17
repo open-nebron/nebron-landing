@@ -12,7 +12,6 @@ const SCROLL_DELAY_MS = 100;         // Delay before triggering transition
 
 export default function PresentationView() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const isLockedRef = useRef(false);
   const touchStartY = useRef(0);
   const scrollAccumulatorRef = useRef(0);
@@ -22,7 +21,6 @@ export default function PresentationView() {
     if (index >= 0 && index < TOTAL_SLIDES && !isLockedRef.current) {
       isLockedRef.current = true;
       scrollAccumulatorRef.current = 0;
-      setScrollProgress(0);
       setCurrentSlide(index);
       setTimeout(() => {
         isLockedRef.current = false;
@@ -33,7 +31,6 @@ export default function PresentationView() {
   const nextSlide = useCallback(() => {
     if (!isLockedRef.current) {
       scrollAccumulatorRef.current = 0;
-      setScrollProgress(0);
       setCurrentSlide((prev: number) => {
         if (prev < TOTAL_SLIDES - 1) {
           isLockedRef.current = true;
@@ -50,7 +47,6 @@ export default function PresentationView() {
   const prevSlide = useCallback(() => {
     if (!isLockedRef.current) {
       scrollAccumulatorRef.current = 0;
-      setScrollProgress(0);
       setCurrentSlide((prev: number) => {
         if (prev > 0) {
           isLockedRef.current = true;
@@ -74,7 +70,6 @@ export default function PresentationView() {
       // Discard all incoming events while locked
       if (isLockedRef.current) {
         scrollAccumulatorRef.current = 0;
-        setScrollProgress(0);
         return;
       }
 
@@ -84,7 +79,6 @@ export default function PresentationView() {
         (scrollAccumulatorRef.current < 0 && e.deltaY > 0)
       ) {
         scrollAccumulatorRef.current = 0;
-        setScrollProgress(0);
         if (delayTimer) {
           clearTimeout(delayTimer);
           delayTimer = null;
@@ -93,17 +87,12 @@ export default function PresentationView() {
 
       scrollAccumulatorRef.current += e.deltaY;
 
-      // Calculate progress (0 to 1) for tactile visual feedback
-      const progress = Math.min(1, Math.abs(scrollAccumulatorRef.current) / SCROLL_THRESHOLD);
-      setScrollProgress(progress);
-
       // Auto-decay if user pauses scrolling for 350ms
       if (resetTimeoutRef.current) {
         clearTimeout(resetTimeoutRef.current);
       }
       resetTimeoutRef.current = setTimeout(() => {
         scrollAccumulatorRef.current = 0;
-        setScrollProgress(0);
         if (delayTimer) {
           clearTimeout(delayTimer);
           delayTimer = null;
@@ -114,14 +103,12 @@ export default function PresentationView() {
       if (scrollAccumulatorRef.current >= SCROLL_THRESHOLD && !delayTimer) {
         delayTimer = setTimeout(() => {
           scrollAccumulatorRef.current = 0;
-          setScrollProgress(0);
           delayTimer = null;
           nextSlide();
         }, SCROLL_DELAY_MS);
       } else if (scrollAccumulatorRef.current <= -SCROLL_THRESHOLD && !delayTimer) {
         delayTimer = setTimeout(() => {
           scrollAccumulatorRef.current = 0;
-          setScrollProgress(0);
           delayTimer = null;
           prevSlide();
         }, SCROLL_DELAY_MS);
@@ -394,17 +381,6 @@ export default function PresentationView() {
             </a>
           </div>
         </div>
-
-        {/* Scroll hint on Hero */}
-        <button
-          onClick={() => goToSlide(1)}
-          className="absolute bottom-8 flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-slate-400 backdrop-blur-md hover:text-white hover:border-white/20 transition-all animate-bounce"
-        >
-          <span>Scroll to explore</span>
-          <svg className="h-3.5 w-3.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </button>
       </div>
 
       {/* Slide 1: Features Section */}
@@ -553,27 +529,6 @@ export default function PresentationView() {
             />
           </button>
         ))}
-      </div>
-
-      {/* ============================================================== */}
-      {/* TACTILE GESTURE ENERGY / SCROLL DELAY FEEDBACK                 */}
-      {/* ============================================================== */}
-      <div
-        className={`fixed bottom-6 right-6 sm:right-8 z-40 flex items-center gap-2.5 pointer-events-none transition-all duration-200 ${
-          scrollProgress > 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-        }`}
-      >
-        <div className="flex items-center gap-2 rounded-full bg-[#0c0e17]/90 border border-white/15 px-3 py-1.5 shadow-2xl backdrop-blur-md">
-          <span className="text-[9px] font-mono font-semibold tracking-wider text-cyan-400 uppercase">
-            Scrolling
-          </span>
-          <div className="w-14 h-1.5 bg-white/10 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-cyan-400 transition-all duration-75 rounded-full"
-              style={{ width: `${Math.round(scrollProgress * 100)}%` }}
-            />
-          </div>
-        </div>
       </div>
     </div>
   );
