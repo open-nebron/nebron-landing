@@ -27,16 +27,16 @@ export default function TransparencySection({
     setStep(0);
     setWallDropped(false);
 
-    // After 4.2s, transition to Step 1 ("That's why Nebron is there...")
+    // Stay on Step 0 for 7.5s (generous reading time with smooth transitions)
     const t1 = setTimeout(() => {
       setStep(1);
-    }, 4200);
+    }, 7500);
 
-    // After 7.8s, drop the wall and reveal Step 2 (Code background + GitHub)
+    // Stay on Step 1 for 6.5s (transitions at 14.0s total)
     const t2 = setTimeout(() => {
       setWallDropped(true);
       setStep(2);
-    }, 7800);
+    }, 14000);
 
     timerRef.current = [t1, t2];
   };
@@ -85,13 +85,13 @@ export default function TransparencySection({
       {/* BACKGROUND CODE MATRIX LAYER (Behind the falling wall)         */}
       {/* ============================================================== */}
       <div
-        className={`absolute inset-0 z-0 flex flex-col justify-center items-center px-4 overflow-hidden transition-all duration-1000 ${
-          wallDropped ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        className={`absolute inset-0 z-0 flex flex-col justify-center items-center px-4 overflow-hidden transition-all duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          wallDropped ? "opacity-100 scale-100 blur-none" : "opacity-0 scale-[1.04] blur-[3px]"
         }`}
       >
         {/* Subtle dark ambient glows */}
-        <div className="absolute top-1/3 left-1/4 h-[450px] w-[550px] rounded-full bg-cyan-600/10 blur-[130px] pointer-events-none" />
-        <div className="absolute bottom-1/3 right-1/4 h-[450px] w-[550px] rounded-full bg-indigo-600/10 blur-[130px] pointer-events-none" />
+        <div className="absolute top-1/3 left-1/4 h-[450px] w-[550px] rounded-full bg-cyan-600/10 blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-1/3 right-1/4 h-[450px] w-[550px] rounded-full bg-indigo-600/10 blur-[140px] pointer-events-none" />
 
         {/* Ambient streaming cryptographic code backdrop */}
         <div className="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden font-mono text-[11px] sm:text-xs leading-relaxed text-cyan-200/80 p-6 select-none flex flex-col justify-around">
@@ -114,7 +114,7 @@ export default function TransparencySection({
           ))}
         </div>
 
-        {/* Overlay to preserve typography readability */}
+        {/* Dark overlay for clean typography contrast */}
         <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] pointer-events-none" />
       </div>
 
@@ -123,76 +123,86 @@ export default function TransparencySection({
       {/* ============================================================== */}
       <div
         style={{ perspective: "1200px" }}
-        className={`absolute inset-0 z-10 transition-all duration-[1100ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] ${
+        className={`absolute inset-0 z-10 transition-all duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
           wallDropped
-            ? "opacity-0 translate-y-[120%] rotate-x-[45deg] pointer-events-none"
-            : "opacity-100 translate-y-0 rotate-x-0 pointer-events-auto bg-black"
+            ? "opacity-0 translate-y-[120%] rotate-x-[55deg] scale-90 pointer-events-none"
+            : "opacity-100 translate-y-0 rotate-x-0 scale-100 pointer-events-auto bg-black"
         }`}
       >
         {/* ============================================================ */}
-        {/* STEP 0: Smooth Cartoonish Mobile & "How do you know..."       */}
+        {/* STEP 0: Smooth Cartoonish Mobile & Provocative Question      */}
         {/* ============================================================ */}
-        {step === 0 && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
-            <div className="mx-auto max-w-5xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-              {/* Left Column: Smooth Cartoonish Mobile Illustration */}
-              <div className="lg:col-span-5 flex justify-center">
-                <div className="relative w-64 sm:w-72 md:w-80 aspect-[896/1200] flex items-center justify-center">
-                  <Image
-                    src="/cartoon-phone.webp"
-                    alt="Encrypted Mobile Chat"
-                    fill
-                    priority
-                    unoptimized
-                    className="object-contain drop-shadow-[0_20px_60px_rgba(0,210,255,0.2)]"
-                  />
-                </div>
-              </div>
-
-              {/* Right Column: The Direct Provocation */}
-              <div className="lg:col-span-7 text-center lg:text-left space-y-5">
-                <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight drop-shadow-2xl">
-                  How do you know nobody is reading your message?
-                </h2>
-
-                <p className="text-base sm:text-xl text-slate-300 leading-relaxed max-w-xl">
-                  Other apps ask for your trust while keeping their code and servers closed.
-                  If you cannot see the source code, you cannot verify what happens to your private messages.
-                </p>
+        <div
+          className={`absolute inset-0 flex flex-col items-center justify-center px-4 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            step === 0
+              ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+              : "opacity-0 -translate-y-8 scale-[0.96] pointer-events-none"
+          }`}
+        >
+          <div className="mx-auto max-w-5xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            {/* Left Column: Transparent Smooth Cartoonish Mobile */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative w-56 sm:w-64 md:w-72 aspect-[561/897] flex items-center justify-center animate-[pulse_6s_ease-in-out_infinite]">
+                <Image
+                  src="/cartoon-phone.png"
+                  alt="Encrypted Mobile Chat"
+                  fill
+                  priority
+                  unoptimized
+                  className="object-contain drop-shadow-[0_20px_50px_rgba(0,210,255,0.3)] transition-transform duration-700 hover:scale-105"
+                />
               </div>
             </div>
+
+            {/* Right Column: The Direct Question */}
+            <div className="lg:col-span-7 text-center lg:text-left space-y-5">
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight drop-shadow-2xl">
+                How do you know nobody is reading your message?
+              </h2>
+
+              <p className="text-base sm:text-xl text-slate-300 leading-relaxed max-w-xl">
+                Other apps ask for your trust while keeping their code and servers closed.
+                If you cannot see the source code, you cannot verify what happens to your private messages.
+              </p>
+            </div>
           </div>
-        )}
+        </div>
 
         {/* ============================================================ */}
         {/* STEP 1: The Nebron Answer & "Check our code"                 */}
         {/* ============================================================ */}
-        {step === 1 && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
-            <div className="mx-auto max-w-3xl text-center space-y-6">
-              <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-tight drop-shadow-2xl">
-                That&apos;s why Nebron is there.
-              </h2>
+        <div
+          className={`absolute inset-0 flex flex-col items-center justify-center px-4 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            step === 1
+              ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+              : step === 0
+              ? "opacity-0 translate-y-8 scale-[0.96] pointer-events-none"
+              : "opacity-0 -translate-y-8 scale-[0.96] pointer-events-none"
+          }`}
+        >
+          <div className="mx-auto max-w-3xl text-center space-y-6">
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-tight drop-shadow-2xl">
+              That&apos;s why Nebron is there.
+            </h2>
 
-              <p className="text-lg sm:text-2xl text-slate-200 font-medium leading-relaxed max-w-2xl mx-auto">
-                We have nothing to hide. Don&apos;t believe us?{" "}
-                <span className="text-white font-bold underline decoration-white/50 underline-offset-8">
-                  Check our code.
-                </span>
-              </p>
-            </div>
+            <p className="text-lg sm:text-2xl text-slate-200 font-medium leading-relaxed max-w-2xl mx-auto">
+              We have nothing to hide. Don&apos;t believe us?{" "}
+              <span className="text-white font-bold underline decoration-white/50 underline-offset-8">
+                Check our code.
+              </span>
+            </p>
           </div>
-        )}
+        </div>
       </div>
 
       {/* ============================================================== */}
       {/* STEP 2: REVEALED STAGE (Wall Fallen · The Open Code & Invite)  */}
       {/* ============================================================== */}
       <div
-        className={`absolute inset-0 z-20 flex flex-col justify-center items-center px-4 transition-all duration-1000 ${
+        className={`absolute inset-0 z-20 flex flex-col justify-center items-center px-4 transition-all duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
           wallDropped
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 translate-y-8 pointer-events-none"
+            ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+            : "opacity-0 translate-y-8 scale-[0.96] pointer-events-none"
         }`}
       >
         <div className="mx-auto max-w-3xl w-full text-center space-y-6 my-auto">
