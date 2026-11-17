@@ -158,56 +158,6 @@ export default function PresentationView() {
     };
   }, [nextSlide, prevSlide]);
 
-  const privacyGuarantees = [
-    {
-      question: "Proof? Check yourself.",
-      description: (
-        <>
-          Don&apos;t just take our word for it. Inspect the cryptography, audit
-          the contracts, and verify every line yourself on{" "}
-          <a
-            href="https://github.com/open-nebron"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-white underline underline-offset-4 hover:text-slate-300 transition-colors inline-flex items-center gap-1"
-          >
-            <span>open-nebron</span>
-            <svg
-              className="h-3.5 w-3.5 inline"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2.2"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
-          </a>
-          .
-        </>
-      ),
-      icon: "🔍",
-      badge: "Open Source",
-    },
-    {
-      question: "Your data sold? Never.",
-      description:
-        "Zero trackers, zero behavioral profiling, and zero third-party ad networks. Your conversations, contacts, and personal feeds belong strictly to you.",
-      icon: "🛡️",
-      badge: "Zero Tracking",
-    },
-    {
-      question: "Who holds the keys? Only you.",
-      description:
-        "Client-side asymmetric keypairs seal every message and voice stream before transmission. Even if server infrastructure is intercepted, your data remains impenetrable.",
-      icon: "🔐",
-      badge: "Zero-Knowledge",
-    },
-  ];
-
   const microservices = [
     {
       name: "auth-service",
@@ -402,40 +352,61 @@ export default function PresentationView() {
             : "opacity-0 translate-y-8 scale-[0.96] pointer-events-none"
         }`}
       >
-        <div className="mx-auto max-w-5xl w-full text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1 text-xs font-semibold text-slate-300 backdrop-blur-md mb-4">
-            Security & Data Sovereignty
-          </div>
+        <div className="mx-auto max-w-4xl w-full text-center">
+          <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
+            Security &amp; Data Sovereignty
+          </span>
 
-          <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white drop-shadow-2xl">
+          <h2 className="mt-3 text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white drop-shadow-2xl">
             Trust? Privacy?
           </h2>
 
-          <p className="mt-4 text-lg sm:text-2xl text-slate-200 font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+          <p className="mt-6 text-xl sm:text-3xl text-slate-100 font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-lg">
             No worries, all your personal chats are{" "}
-            <span className="text-white font-bold">end-to-end encrypted</span>.
+            <span className="text-white font-bold underline decoration-white/30 underline-offset-8">
+              end-to-end encrypted
+            </span>
+            .
           </p>
 
-          <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 text-left max-h-[62vh] overflow-y-auto md:overflow-visible pr-1 md:pr-0">
-            {privacyGuarantees.map((item) => (
-              <div
-                key={item.question}
-                className="group relative rounded-2xl border border-white/15 bg-black/65 backdrop-blur-xl p-5 sm:p-6 transition-all duration-300 hover:border-white/30 hover:bg-black/75 hover:-translate-y-1 shadow-2xl"
+          {/* Clean bullet accents without bulky box containers */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-5 sm:gap-10 text-sm sm:text-base text-slate-300">
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400" />
+              <span>Zero ads &amp; zero tracking</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-sm shadow-cyan-400" />
+              <span>Client-side key ownership</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 shadow-sm shadow-indigo-400" />
+              <span>Auditable open cryptography</span>
+            </div>
+          </div>
+
+          {/* The Proof Link CTA */}
+          <div className="mt-10 flex items-center justify-center">
+            <a
+              href="https://github.com/open-nebron"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-md transition-all hover:bg-white/20 hover:border-white/40 hover:scale-[1.03] active:scale-[0.98] shadow-2xl"
+            >
+              <span>Proof? Check yourself on</span>
+              <span className="underline decoration-white/50 underline-offset-4 group-hover:decoration-white font-bold">
+                open-nebron
+              </span>
+              <svg
+                className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2.5"
+                stroke="currentColor"
               >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-2xl">{item.icon}</span>
-                  <span className="font-mono text-[10px] text-slate-300 rounded bg-white/10 px-2 py-0.5 border border-white/10">
-                    {item.badge}
-                  </span>
-                </div>
-                <h3 className="text-base sm:text-lg font-bold text-white drop-shadow">
-                  {item.question}
-                </h3>
-                <div className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  {item.description}
-                </div>
-              </div>
-            ))}
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>
