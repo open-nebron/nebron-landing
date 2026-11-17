@@ -4,8 +4,9 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Navbar from "./Navbar";
 import TransparencySection from "./TransparencySection";
+import GlassworksSection from "./GlassworksSection";
 
-const TOTAL_SLIDES = 4;
+const TOTAL_SLIDES = 5;
 const TRANSITION_DURATION_MS = 1200; // 1.2s smooth cinematic dissolve
 const TRANSITION_COOLDOWN_MS = 1500; // Lock buffer to absorb all inertia and rapid gestures
 const SCROLL_THRESHOLD = 300;        // Intentional scroll requirement
@@ -485,11 +486,22 @@ export default function PresentationView() {
         <TransparencySection isActive={currentSlide === 3} />
       </div>
 
+      {/* Slide 4: Glassworks Section (5th Section) */}
+      <div
+        className={`absolute inset-0 z-30 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          currentSlide === 4
+            ? "opacity-100 scale-100 pointer-events-auto"
+            : "opacity-0 scale-[0.98] pointer-events-none"
+        }`}
+      >
+        <GlassworksSection isActive={currentSlide === 4} onGoToSlide={goToSlide} />
+      </div>
+
       {/* ============================================================== */}
-      {/* SIDE SLIDE INDICATORS (Clickable 01, 02, 03, 04 pills)         */}
+      {/* SIDE SLIDE INDICATORS (Clickable 01, 02, 03, 04, 05 pills)     */}
       {/* ============================================================== */}
       <div className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3">
-        {[0, 1, 2, 3].map((idx) => (
+        {[0, 1, 2, 3, 4].map((idx) => (
           <button
             key={idx}
             onClick={() => goToSlide(idx)}

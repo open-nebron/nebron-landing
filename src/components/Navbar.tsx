@@ -75,6 +75,16 @@ export default function Navbar({ activeSlide = 0, onSelectSlide }: NavbarProps) 
           >
             Transparency
           </button>
+          <button
+            onClick={(e) => handleNavClick(e, 4)}
+            className={`rounded-lg px-3.5 py-1.5 transition-all ${
+              activeSlide === 4
+                ? "text-cyan-400 bg-white/10 font-semibold"
+                : "text-slate-300 hover:text-white hover:bg-white/5"
+            }`}
+          >
+            Glassworks
+          </button>
           <a
             href="https://github.com/open-nebron"
             target="_blank"
@@ -174,6 +184,14 @@ export default function Navbar({ activeSlide = 0, onSelectSlide }: NavbarProps) 
             }`}
           >
             Transparency
+          </button>
+          <button
+            onClick={(e) => handleNavClick(e, 4)}
+            className={`block w-full text-left rounded-lg px-3 py-2 text-base font-medium ${
+              activeSlide === 4 ? "text-cyan-400 bg-white/10" : "text-slate-300 hover:bg-white/5 hover:text-white"
+            }`}
+          >
+            Glassworks
           </button>
           <a
             href="https://github.com/open-nebron"
