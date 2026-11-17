@@ -12,6 +12,7 @@ const SCROLL_DELAY_MS = 100;         // Delay before triggering transition
 
 export default function PresentationView() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [handle, setHandle] = useState("");
   const isLockedRef = useRef(false);
   const touchStartY = useRef(0);
   const scrollAccumulatorRef = useRef(0);
@@ -158,37 +159,6 @@ export default function PresentationView() {
     };
   }, [nextSlide, prevSlide]);
 
-  const microservices = [
-    {
-      name: "auth-service",
-      port: "4001",
-      role: "Identity & Tokens",
-      tech: "Fastify · Jose · Argon2 · Redis · Mongo",
-      desc: "Issues RS256 access & refresh tokens, rotation reuse prevention, public JWKS key exposure.",
-    },
-    {
-      name: "core-backend",
-      port: "4002",
-      role: "User Profiles & Media",
-      tech: "Fastify · S3/R2 SDK · MongoDB · OpenAPI 3.1",
-      desc: "Handles username claims, profile metadata, preferences, and Cloudflare R2 presigned media slots.",
-    },
-    {
-      name: "chat-service",
-      port: "4003",
-      role: "Real-time Messaging",
-      tech: "WebSockets · Redis Pub/Sub · MongoDB",
-      desc: "Channels, direct messaging, typing alerts, read receipts, and instantaneous message delivery.",
-    },
-    {
-      name: "voice-service",
-      port: "4004",
-      role: "Spatial WebRTC Voice",
-      tech: "WebRTC SFU · Opus 48kHz · UDP Media",
-      desc: "Sub-15ms voice channels with spatial audio simulation and dynamic packet loss concealment.",
-    },
-  ];
-
   return (
     <div className="fixed inset-0 h-screen w-screen overflow-hidden bg-[#08090d] select-none">
       {/* Top Fixed Navbar */}
@@ -255,7 +225,7 @@ export default function PresentationView() {
         <div className="absolute inset-0 bg-black/35 backdrop-blur-[0.5px]" />
       </div>
 
-      {/* Background 2: Architecture Mesh Background */}
+      {/* Background 2: 4K Twilight Horizon Wallpaper */}
       <div
         className={`fixed inset-0 z-0 pointer-events-none transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
           currentSlide === 2
@@ -263,9 +233,17 @@ export default function PresentationView() {
             : "opacity-0 scale-[1.06] blur-[3px]"
         }`}
       >
-        <div className="absolute top-1/4 left-1/3 h-[500px] w-[600px] rounded-full bg-cyan-600/15 blur-[140px]" />
-        <div className="absolute bottom-1/4 right-1/3 h-[500px] w-[600px] rounded-full bg-indigo-600/15 blur-[140px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:28px_28px] opacity-60" />
+        <Image
+          src="/cta-bg-4k.webp"
+          alt="Nebron Horizon"
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className="object-cover object-center hero-image-render"
+        />
+        <div className="absolute inset-0 hero-dither pointer-events-none" />
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[0.5px]" />
       </div>
 
       {/* ============================================================== */}
@@ -395,66 +373,91 @@ export default function PresentationView() {
         </div>
       </div>
 
-      {/* Slide 2: Architecture Section */}
+      {/* Slide 2: Call to Action / Get Started */}
       <div
-        className={`absolute inset-0 z-30 flex flex-col justify-between items-center px-4 pt-20 pb-4 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`absolute inset-0 z-30 flex flex-col justify-between items-center px-4 pt-20 pb-6 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
           currentSlide === 2
             ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
             : "opacity-0 translate-y-8 scale-[0.96] pointer-events-none"
         }`}
       >
-        <div className="mx-auto max-w-5xl w-full my-auto">
-          <div className="text-center mb-6 sm:mb-8">
-            <span className="text-xs font-semibold uppercase tracking-widest text-indigo-400 drop-shadow">
-              System Topology
-            </span>
-            <h2 className="mt-1 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white drop-shadow-lg">
-              Polyrepo Microservice Architecture
-            </h2>
-            <p className="mt-2 text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
-              Decoupled services with dedicated databases, isolated runtimes, and shared contracts.
-            </p>
-          </div>
+        <div className="mx-auto max-w-4xl w-full my-auto text-center">
+          <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
+            Join the Movement
+          </span>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 max-h-[58vh] overflow-y-auto sm:overflow-visible pr-1 sm:pr-0">
-            {microservices.map((svc) => (
-              <div
-                key={svc.name}
-                className="rounded-xl border border-white/15 bg-[#0c0e17]/85 backdrop-blur-xl p-4 sm:p-5 hover:border-indigo-500/50 transition-colors"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <div className="h-2.5 w-2.5 rounded-full bg-indigo-500 animate-pulse" />
-                    <span className="font-mono text-sm font-bold text-white">
-                      {svc.name}
-                    </span>
-                  </div>
-                  <span className="font-mono text-[11px] rounded bg-indigo-500/10 text-indigo-400 px-2 py-0.5 border border-indigo-500/20">
-                    Port :{svc.port}
-                  </span>
-                </div>
+          <h2 className="mt-3 text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white drop-shadow-2xl">
+            Ready to leave the bloat behind?
+          </h2>
 
-                <div className="mt-2 text-xs font-medium text-slate-200">
-                  {svc.role}
-                </div>
-                <p className="mt-1 text-xs text-slate-400 leading-relaxed">
-                  {svc.desc}
-                </p>
+          <p className="mt-4 sm:mt-6 text-base sm:text-xl text-slate-200 font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-lg">
+            Claim your handle today and start connecting with complete data sovereignty.
+          </p>
 
-                <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-400">
-                  <span>Stack:</span>
-                  <span className="text-cyan-300/80">{svc.tech}</span>
-                </div>
-              </div>
-            ))}
+          {/* Interactive Handle Claim Form */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (handle.trim()) {
+                window.open(`https://github.com/open-nebron?claim=${encodeURIComponent(handle.trim())}`, "_blank");
+              }
+            }}
+            className="mt-8 sm:mt-10 mx-auto flex w-full max-w-md flex-col sm:flex-row items-center gap-2 rounded-2xl border border-white/20 bg-black/40 p-2 backdrop-blur-xl shadow-2xl transition-all focus-within:border-white/50"
+          >
+            <div className="flex w-full sm:w-auto flex-1 items-center px-3 py-1.5 text-white">
+              <span className="font-mono text-sm text-slate-400 select-none">nebron.org/@</span>
+              <input
+                type="text"
+                value={handle}
+                onChange={(e) => setHandle(e.target.value.toLowerCase().replace(/[^a-z0-9_-]/g, ""))}
+                placeholder="username"
+                maxLength={30}
+                className="w-full bg-transparent px-1.5 py-1 text-sm font-semibold text-white placeholder-slate-500 focus:outline-none"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-bold text-slate-950 transition-all hover:bg-slate-200 active:scale-[0.98] shadow-md whitespace-nowrap"
+            >
+              <span>Claim Handle</span>
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </button>
+          </form>
+
+          {/* Secondary Actions */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm font-semibold">
+            <a
+              href="https://github.com/open-nebron/desktop-app/releases"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md px-5 py-2.5 text-white transition-all hover:bg-white/20 hover:border-white/40 active:scale-[0.98]"
+            >
+              <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+              <span>Download Desktop</span>
+            </a>
+            <a
+              href="https://github.com/open-nebron"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md px-5 py-2.5 text-white transition-all hover:bg-white/20 hover:border-white/40 active:scale-[0.98]"
+            >
+              <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+              <span>Star on GitHub</span>
+            </a>
           </div>
         </div>
 
         {/* Compact Footer */}
         <div className="w-full max-w-5xl border-t border-white/10 pt-3 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-white">NEBRON</span>
-            <span>© 2026 Open Nebron. Apache 2.0 / MIT.</span>
+            <span className="font-bold text-white tracking-wider">NEBRON</span>
+            <span>© 2026 Open Nebron. Open Source.</span>
           </div>
           <div className="flex items-center gap-4">
             <a href="https://github.com/open-nebron" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
