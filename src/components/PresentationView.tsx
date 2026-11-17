@@ -3,8 +3,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Navbar from "./Navbar";
+import TransparencySection from "./TransparencySection";
 
-const TOTAL_SLIDES = 3;
+const TOTAL_SLIDES = 4;
 const TRANSITION_DURATION_MS = 1200; // 1.2s smooth cinematic dissolve
 const TRANSITION_COOLDOWN_MS = 1500; // Lock buffer to absorb all inertia and rapid gestures
 const SCROLL_THRESHOLD = 300;        // Intentional scroll requirement
@@ -463,6 +464,9 @@ export default function PresentationView() {
             <a href="https://github.com/open-nebron" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               GitHub
             </a>
+            <button onClick={() => goToSlide(3)} className="text-cyan-400 hover:text-white transition-colors">
+              Transparency ↓
+            </button>
             <button onClick={() => goToSlide(0)} className="hover:text-white transition-colors">
               Top ↑
             </button>
@@ -470,11 +474,22 @@ export default function PresentationView() {
         </div>
       </div>
 
+      {/* Slide 3: Transparency Section (4th Section) */}
+      <div
+        className={`absolute inset-0 z-30 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          currentSlide === 3
+            ? "opacity-100 scale-100 pointer-events-auto"
+            : "opacity-0 scale-[0.98] pointer-events-none"
+        }`}
+      >
+        <TransparencySection isActive={currentSlide === 3} onGoToSlide={goToSlide} />
+      </div>
+
       {/* ============================================================== */}
-      {/* SIDE SLIDE INDICATORS (Clickable 01, 02, 03 pills)             */}
+      {/* SIDE SLIDE INDICATORS (Clickable 01, 02, 03, 04 pills)         */}
       {/* ============================================================== */}
       <div className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3">
-        {[0, 1, 2].map((idx) => (
+        {[0, 1, 2, 3].map((idx) => (
           <button
             key={idx}
             onClick={() => goToSlide(idx)}
