@@ -158,42 +158,53 @@ export default function PresentationView() {
     };
   }, [nextSlide, prevSlide]);
 
-  const features = [
+  const privacyGuarantees = [
     {
-      title: "Sub-15ms Spatial Voice",
-      description: "High-fidelity WebRTC audio pipelines with Opus 48kHz encoding, dynamic bitrate, and jitter buffer.",
-      badge: "voice-service",
-      icon: "🔊",
+      question: "Proof? Check yourself.",
+      description: (
+        <>
+          Don&apos;t just take our word for it. Inspect the cryptography, audit
+          the contracts, and verify every line yourself on{" "}
+          <a
+            href="https://github.com/open-nebron"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-white underline underline-offset-4 hover:text-slate-300 transition-colors inline-flex items-center gap-1"
+          >
+            <span>open-nebron</span>
+            <svg
+              className="h-3.5 w-3.5 inline"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="2.2"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </a>
+          .
+        </>
+      ),
+      icon: "🔍",
+      badge: "Open Source",
     },
     {
-      title: "High-Frequency Realtime Chat",
-      description: "Engineered with Redis pub/sub streams and MongoDB clustering for persistent, encrypted messaging.",
-      badge: "chat-service",
-      icon: "💬",
-    },
-    {
-      title: "Zero-Trust Identity & JWKS",
-      description: "RS256 asymmetric token signing with automatic key rotation and public JWKS verification endpoints.",
-      badge: "auth-service",
-      icon: "🔐",
-    },
-    {
-      title: "Direct R2 Media Infrastructure",
-      description: "Presigned upload slots with automated mime verification streaming directly to Cloudflare R2 storage.",
-      badge: "core-backend",
-      icon: "⚡",
-    },
-    {
-      title: "Native Cross-Platform Clients",
-      description: "Dedicated web frontend, lightweight desktop client, and mobile apps communicating via unified contracts.",
-      badge: "clients",
-      icon: "💻",
-    },
-    {
-      title: "Shared Contracts & Type-Safety",
-      description: "Standardized OpenAPI 3.1 specifications and Zod contract validations keeping services in lockstep.",
-      badge: "contracts",
+      question: "Your data sold? Never.",
+      description:
+        "Zero trackers, zero behavioral profiling, and zero third-party ad networks. Your conversations, contacts, and personal feeds belong strictly to you.",
       icon: "🛡️",
+      badge: "Zero Tracking",
+    },
+    {
+      question: "Who holds the keys? Only you.",
+      description:
+        "Client-side asymmetric keypairs seal every message and voice stream before transmission. Even if server infrastructure is intercepted, your data remains impenetrable.",
+      icon: "🔐",
+      badge: "Zero-Knowledge",
     },
   ];
 
@@ -383,7 +394,7 @@ export default function PresentationView() {
         </div>
       </div>
 
-      {/* Slide 1: Features Section */}
+      {/* Slide 1: Trust & Privacy Section */}
       <div
         className={`absolute inset-0 z-30 flex flex-col justify-center items-center px-4 pt-16 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
           currentSlide === 1
@@ -391,37 +402,38 @@ export default function PresentationView() {
             : "opacity-0 translate-y-8 scale-[0.96] pointer-events-none"
         }`}
       >
-        <div className="mx-auto max-w-6xl w-full">
-          <div className="text-center mb-6 sm:mb-8">
-            <span className="text-xs font-semibold uppercase tracking-widest text-cyan-400 drop-shadow">
-              Engineered Capabilities
-            </span>
-            <h2 className="mt-1 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white drop-shadow-lg">
-              Built for Extreme Speed & Total Modularity
-            </h2>
-            <p className="mt-2 text-xs sm:text-sm text-slate-300 drop-shadow max-w-xl mx-auto">
-              Every layer of Nebron is independently decoupled, typed, and scaled for low latency communication.
-            </p>
+        <div className="mx-auto max-w-5xl w-full text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1 text-xs font-semibold text-slate-300 backdrop-blur-md mb-4">
+            Security & Data Sovereignty
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 max-h-[62vh] overflow-y-auto sm:overflow-visible pr-1 sm:pr-0">
-            {features.map((feat) => (
+          <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white drop-shadow-2xl">
+            Trust? Privacy?
+          </h2>
+
+          <p className="mt-4 text-lg sm:text-2xl text-slate-200 font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+            No worries, all your personal chats are{" "}
+            <span className="text-white font-bold">end-to-end encrypted</span>.
+          </p>
+
+          <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 text-left max-h-[62vh] overflow-y-auto md:overflow-visible pr-1 md:pr-0">
+            {privacyGuarantees.map((item) => (
               <div
-                key={feat.title}
-                className="group relative rounded-xl border border-white/15 bg-black/60 backdrop-blur-xl p-4 sm:p-5 transition-all duration-300 hover:border-cyan-500/50 hover:bg-black/75 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-cyan-500/10"
+                key={item.question}
+                className="group relative rounded-2xl border border-white/15 bg-black/65 backdrop-blur-xl p-5 sm:p-6 transition-all duration-300 hover:border-white/30 hover:bg-black/75 hover:-translate-y-1 shadow-2xl"
               >
-                <div className="flex items-center justify-between">
-                  <span className="text-xl">{feat.icon}</span>
-                  <span className="font-mono text-[10px] text-cyan-300 rounded bg-white/10 px-2 py-0.5 border border-white/10">
-                    {feat.badge}
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-2xl">{item.icon}</span>
+                  <span className="font-mono text-[10px] text-slate-300 rounded bg-white/10 px-2 py-0.5 border border-white/10">
+                    {item.badge}
                   </span>
                 </div>
-                <h3 className="mt-3 text-sm sm:text-base font-semibold text-white drop-shadow">
-                  {feat.title}
+                <h3 className="text-base sm:text-lg font-bold text-white drop-shadow">
+                  {item.question}
                 </h3>
-                <p className="mt-1.5 text-xs text-slate-300 leading-relaxed">
-                  {feat.description}
-                </p>
+                <div className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  {item.description}
+                </div>
               </div>
             ))}
           </div>

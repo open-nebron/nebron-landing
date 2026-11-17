@@ -53,7 +53,7 @@ export default function Navbar({ activeSlide = 0, onSelectSlide }: NavbarProps) 
                 : "text-slate-300 hover:text-white hover:bg-white/5"
             }`}
           >
-            Features
+            Privacy
           </button>
           <button
             onClick={(e) => handleNavClick(e, 2)}
@@ -147,7 +147,7 @@ export default function Navbar({ activeSlide = 0, onSelectSlide }: NavbarProps) 
               activeSlide === 1 ? "text-cyan-400 bg-white/10" : "text-slate-300 hover:bg-white/5 hover:text-white"
             }`}
           >
-            Features
+            Privacy
           </button>
           <button
             onClick={(e) => handleNavClick(e, 2)}
