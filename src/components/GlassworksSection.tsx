@@ -4,7 +4,7 @@ import { GlassTiles } from "@/components/ui/glass-tiles";
 
 // Deep Violet Palette only
 const DEEP_VIOLET = {
-  glow: "#c25cff",
+  glow: "#006eff",
   deep: "#3a1a8a",
   ground: "#07040e",
 };
